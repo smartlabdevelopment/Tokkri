@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tokkri - Fresh Raw Chicken Delivery</title>
+    <style>
+        :root {
+            --color-primary: #ff6b35;
+            --color-secondary: #004e89;
+            --color-accent: #00a86b;
+            --color-light: #f5f5f5;
+            --color-dark: #1a1a1a;
+            --color-border: #ddd;
+            --color-success: #4caf50;
+            --color-error: #f44336;
+            --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--color-dark);
+            background-color: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--color-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-primary);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .nav-btn-primary:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section - Coming Soon */
+        .hero {
+            background: linear-gradient(135deg, var(--color-secondary) 0%, #006fa3 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 10px;
+            min-width: 100px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #e55a2b;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--color-secondary);
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: transparent;
+            transform: translateY(-3px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 2rem;
+            background: var(--color-light);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--color-dark);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Carousel */
+        .carousel-container {
+            position: relative;
+            max-width: 100%;
+            margin: 3rem 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-light) 0%, #fff 100%);
+            position: relative;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .carousel-content {
+            max-width: 600px;
+        }
+
+        .carousel-item h2 {
+            font-size: 2rem;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .carousel-item p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .carousel-img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 10px;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        .carousel-btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .carousel-btn:hover {
+            background: var(--color-secondary);
+            transform: scale(1.1);
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-dot.active {
+            background: var(--color-primary);
+            width: 25px;
+            border-radius: 5px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px solid var(--color-border);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-badge {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            color: var(--color-secondary);
+            margin: 1rem 0;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .service-card li {
+            padding: 0.5rem 0;
+            color: #555;
+        }
+
+        .service-card li::before {
+            content: "✓ ";
+            color: var(--color-accent);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--color-primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--color-border);
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 5px rgba(255, 107, 53, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .form-submit:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--color-secondary) 0%, #006fa3 100%);
+            color: white;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .contact-card a:hover {
+            color: var(--color-primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--color-secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .countdown {
+                gap: 1rem;
+            }
+
+            .countdown-item {
+                padding: 1rem;
+                min-width: 80px;
+            }
+
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+
+            .carousel-item {
+                height: 300px;
+            }
+
+            .carousel-item h2 {
+                font-size: 1.5rem;
+            }
+
+            .carousel-img {
+                max-width: 200px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: var(--color-success);
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">🍗 Tokkri</a>
+            <ul class="nav-menu">
+                <li><a onclick="scrollToSection('services')">Services</a></li>
+                <li><a onclick="scrollToSection('about')">About</a></li>
+                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <button class="nav-btn nav-btn-primary" onclick="openModal('registerModal')">Register</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero / Coming Soon Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🎉 Tokkri Coming Soon!</h1>
+            <p>Fresh Raw Chicken Delivery - The Freshness You Deserve</p>
+            <p style="font-size: 1.1rem; margin-top: 1rem;">Premium quality, freshly cut chicken delivered to your doorstep</p>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">30</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">12</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">45</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">30</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="openModal('notifyModal')">Notify Me</button>
+                <a href="https://wa.me/917008897000?text=Hi%20Tokkri%2C%20I%27m%20interested%20in%20your%20services!" class="btn btn-secondary" target="_blank">💬 WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Tokkri?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>100% Fresh</h3>
+                    <p>Freshly cut chicken delivered within hours of slaughter. No cold storage compromise.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Quick Delivery</h3>
+                    <p>Same-day delivery available for orders placed before 2 PM</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Best Prices</h3>
+                    <p>Direct from farm to your table - No middlemen, competitive pricing</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✂️</div>
+                    <h3>Custom Cuts</h3>
+                    <p>Curry Cut, 8-Piece, Skinless, Full Chicken - Choose your cut</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Subscription Plan</h3>
+                    <p>Weekly or monthly subscriptions with exclusive discounts</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>100% Safe</h3>
+                    <p>Hygienic packaging & temperature-controlled delivery</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Section -->
+    <section style="padding: 3rem 2rem; background: white;">
+        <div class="container">
+            <h2 class="section-title">Our Specialty Offerings</h2>
+            <div class="carousel-container">
+                <div class="carousel" id="mainCarousel">
+                    <div class="carousel-item">
+                        <div class="carousel-content">
+                            <h2>🍗 Curry Cut</h2>
+                            <p>Perfect size pieces for traditional curries and gravies. Ideal for family meals.</p>
+                            <p style="font-size: 1.3rem; color: var(--color-primary); font-weight: bold;">₹350 per kg</p>
+                            <p style="font-size: 0.95rem; color: #666;">Medium pieces, no bones - Great for authentic Indian curries</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-content">
+                            <h2>✂️ 8-Piece Cut</h2>
+                            <p>Full chicken split into 8 premium pieces. Great for BBQ and grilling.</p>
+                            <p style="font-size: 1.3rem; color: var(--color-primary); font-weight: bold;">₹320 per kg</p>
+                            <p style="font-size: 0.95rem; color: #666;">Includes breasts, thighs, drumsticks - Perfect for grilling</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-content">
+                            <h2>🥩 Skinless</h2>
+                            <p>Health-conscious choice. Boneless, skinless chicken breast fillets.</p>
+                            <p style="font-size: 1.3rem; color: var(--color-primary); font-weight: bold;">₹420 per kg</p>
+                            <p style="font-size: 0.95rem; color: #666;">Lean protein, perfect for diet-conscious cooking</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-content">
+                            <h2>🍗 Full Chicken</h2>
+                            <p>Whole fresh chicken. Get everything you need from one source.</p>
+                            <p style="font-size: 1.3rem; color: var(--color-primary); font-weight: bold;">₹280 per kg</p>
+                            <p style="font-size: 0.95rem; color: #666;">2-3 kg whole bird, farm fresh daily</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn" onclick="carouselSlide(-1)">❮</button>
+                    <button class="carousel-btn" onclick="carouselSlide(1)">❯</button>
+                </div>
+
+                <div class="carousel-dots">
+                    <span class="carousel-dot active" onclick="currentSlide(0)"></span>
+                    <span class="carousel-dot" onclick="currentSlide(1)"></span>
+                    <span class="carousel-dot" onclick="currentSlide(2)"></span>
+                    <span class="carousel-dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <!-- On-Demand Service -->
+                <div class="service-card">
+                    <div class="service-badge">On-Demand</div>
+                    <h3>Order Anytime</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Fresh chicken delivered the same day when you order before 2 PM</p>
+                    <ul>
+                        <li>Same-day delivery available</li>
+                        <li>Choose your preferred cut</li>
+                        <li>Flexible quantity selection</li>
+                        <li>Real-time order tracking</li>
+                        <li>Premium packaging</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="openModal('onDemandModal')" style="margin-top: 1.5rem;">Learn More</button>
+                </div>
+
+                <!-- Subscription Service -->
+                <div class="service-card">
+                    <div class="service-badge" style="background: var(--color-accent);">Subscription</div>
+                    <h3>Subscribe & Save</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Get regular fresh chicken deliveries with exclusive discounts</p>
+                    <ul>
+                        <li>Weekly or monthly plans</li>
+                        <li>15-20% discount on subscriptions</li>
+                        <li>Fixed delivery schedule</li>
+                        <li>Pause or skip anytime</li>
+                        <li>Dedicated customer support</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="openModal('subscriptionModal')" style="margin-top: 1.5rem; background: var(--color-accent);">Subscribe Now</button>
+                </div>
+
+                <!-- Bulk Order Service -->
+                <div class="service-card">
+                    <div class="service-badge" style="background: var(--color-secondary);">Corporate</div>
+                    <h3>Bulk Orders</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Perfect for restaurants, caterers, and event management</p>
+                    <ul>
+                        <li>Wholesale pricing available</li>
+                        <li>Custom cut specifications</li>
+                        <li>Guaranteed quality & freshness</li>
+                        <li>Flexible delivery schedule</li>
+                        <li>Dedicated account manager</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="openModal('contactModal')" style="margin-top: 1.5rem; background: var(--color-secondary);">Get Quote</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section style="padding: 5rem 2rem; background: var(--color-light);" id="about">
+        <div class="container">
+            <h2 class="section-title">About Tokkri</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                <div>
+                    <h3 style="color: var(--color-secondary); margin-bottom: 1rem; font-size: 1.8rem;">Farm to Doorstep</h3>
+                    <p style="margin-bottom: 1rem; line-height: 1.8; color: #555;">
+                        Tokkri is dedicated to providing the freshest raw chicken directly from our partner farms to your kitchen. 
+                        We believe in quality, freshness, and trust.
+                    </p>
+                    <p style="margin-bottom: 1rem; line-height: 1.8; color: #555;">
+                        With our on-demand and subscription models, we ensure you always have access to premium quality chicken 
+                        at competitive prices, without compromise on freshness or hygiene.
+                    </p>
+                    <p style="line-height: 1.8; color: #555;">
+                        Our commitment is simple: Fresh chicken, delivered fast, with exceptional customer service.
+                    </p>
+                </div>
+                <div style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); 
+                            height: 400px; border-radius: 15px; display: flex; align-items: center; justify-content: center; 
+                            color: white; font-size: 5rem; box-shadow: var(--shadow-lg);">
+                    🍗
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-card-icon">📞</div>
+                    <h3>Call Us</h3>
+                    <p>+91 7008897000</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Mon-Sat: 8 AM - 8 PM</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-card-icon">💬</div>
+                    <h3>WhatsApp</h3>
+                    <a href="https://wa.me/917008897000?text=Hi%20Tokkri%2C%20I%20have%20a%20question" target="_blank">Chat with us</a>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Instant response</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-card-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:hello@tokkri.com">hello@tokkri.com</a>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">We'll respond within 24 hours</p>
+                </div>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 10px; max-width: 600px; margin: 3rem auto;">
+                <h3 style="margin-bottom: 1.5rem; text-align: center;">Send us a Message</h3>
+                <div class="success-message" id="contactSuccess">✓ Message sent successfully! We'll contact you soon.</div>
+                <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" required placeholder="+91 XXXXX XXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea required placeholder="Your message..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🍗 Tokkri</h4>
+                    <p>Fresh Raw Chicken Delivery - The Freshness You Deserve</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://instagram.com" target="_blank" title="Instagram">📷</a>
+                        <a href="https://facebook.com" target="_blank" title="Facebook">👍</a>
+                        <a href="https://youtube.com" target="_blank" title="YouTube">🎥</a>
+                        <a href="https://wa.me/917008897000" target="_blank" title="WhatsApp">💬</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tokkri Fresh Chicken Delivery. All rights reserved.</p>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #aaa;">
+                    <a href="#" style="color: #aaa;">Privacy Policy</a> | 
+                    <a href="#" style="color: #aaa;">Terms & Conditions</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Registration Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2 style="color: var(--color-secondary); margin-bottom: 1.5rem;">Create Your Account</h2>
+            <div class="success-message" id="registerSuccess">✓ Account created successfully! Check your email for verification.</div>
+            <form id="registerForm" onsubmit="handleRegisterSubmit(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" required placeholder="+91 XXXXX XXXXX">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" required placeholder="Create a strong password">
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" required placeholder="Confirm your password">
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label style="display: flex; align-items: center; font-weight: normal;">
+                        <input type="checkbox" required style="width: auto; margin-right: 0.5rem;">
+                        I agree to the Terms & Conditions
+                    </label>
+                </div>
+                <button type="submit" class="form-submit">Create Account</button>
+                <p style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                    Already have an account? <a href="#" style="color: var(--color-primary); font-weight: 600;">Login here</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notify Me Modal -->
+    <div id="notifyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('notifyModal')">&times;</span>
+            <h2 style="color: var(--color-secondary); margin-bottom: 1.5rem;">Get Launch Notifications</h2>
+            <div class="success-message" id="notifySuccess">✓ You'll be notified when we launch!</div>
+            <form id="notifyForm" onsubmit="handleNotifySubmit(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number (Optional)</label>
+                    <input type="tel" placeholder="+91 XXXXX XXXXX">
+                </div>
+                <button type="submit" class="form-submit">Notify Me on Launch</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- On-Demand Modal -->
+    <div id="onDemandModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('onDemandModal')">&times;</span>
+            <h2 style="color: var(--color-secondary); margin-bottom: 1rem;">Order Fresh Chicken Now</h2>
+            <p style="color: #666; margin-bottom: 1.5rem;">Coming soon! Reserve your order for launch day</p>
+            <form id="onDemandForm" onsubmit="handleOnDemandSubmit(event)">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" required placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" required placeholder="+91 XXXXX XXXXX">
+                </div>
+                <div class="form-group">
+                    <label>Preferred Cut Type</label>
+                    <select required>
+                        <option value="">Select a cut type</option>
+                        <option value="curry">Curry Cut</option>
+                        <option value="8piece">8-Piece Cut</option>
+                        <option value="skinless">Skinless</option>
+                        <option value="full">Full Chicken</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantity (kg)</label>
+                    <input type="number" required placeholder="2" min="1">
+                </div>
+                <button type="submit" class="form-submit">Reserve Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Subscription Modal -->
+    <div id="subscriptionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('subscriptionModal')">&times;</span>
+            <h2 style="color: var(--color-secondary); margin-bottom: 1rem;">Choose Your Subscription Plan</h2>
+            <p style="color: #666; margin-bottom: 1.5rem;">Subscribe now and save 15-20%!</p>
+            <form id="subscriptionForm" onsubmit="handleSubscriptionSubmit(event)">
+                <div class="form-group">
+                    <label>Subscription Plan</label>
+                    <select required>
+                        <option value="">Select a plan</option>
+                        <option value="weekly">Weekly (Every 7 days)</option>
+                        <option value="biweekly">Bi-weekly (Every 14 days)</option>
+                        <option value="monthly">Monthly (Every 30 days)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Cut</label>
+                    <select required>
+                        <option value="">Select a cut</option>
+                        <option value="curry">Curry Cut - ₹297/kg (15% off)</option>
+                        <option value="8piece">8-Piece - ₹272/kg (15% off)</option>
+                        <option value="skinless">Skinless - ₹357/kg (15% off)</option>
+                        <option value="full">Full Chicken - ₹238/kg (15% off)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantity per Delivery (kg)</label>
+                    <input type="number" required placeholder="2" min="1">
+                </div>
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" required placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required placeholder="your@email.com">
+                </div>
+                <button type="submit" class="form-submit">Subscribe Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('contactModal')">&times;</span>
+            <h2 style="color: var(--color-secondary); margin-bottom: 1rem;">Corporate/Bulk Order Inquiry</h2>
+            <form id="bulkForm" onsubmit="handleBulkSubmit(event)">
+                <div class="form-group">
+                    <label>Business Name</label>
+                    <input type="text" required placeholder="Your business name">
+                </div>
+                <div class="form-group">
+                    <label>Contact Person</label>
+                    <input type="text" required placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" required placeholder="+91 XXXXX XXXXX">
+                </div>
+                <div class="form-group">
+                    <label>Type of Business</label>
+                    <select required>
+                        <option value="">Select type</option>
+                        <option value="restaurant">Restaurant</option>
+                        <option value="catering">Catering Service</option>
+                        <option value="hotel">Hotel</option>
+                        <option value="event">Event Management</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Monthly Quantity (kg)</label>
+                    <input type="number" required placeholder="100" min="10">
+                </div>
+                <div class="form-group">
+                    <label>Special Requirements</label>
+                    <textarea placeholder="Any custom specifications..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">Get Quote</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const carousel = document.getElementById('mainCarousel');
+        const carouselDots = document.querySelectorAll('.carousel-dot');
+
+        function goToSlide(n) {
+            currentSlide = (n + 4) % 4;
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateDots();
+        }
+
+        function carouselSlide(n) {
+            goToSlide(currentSlide + n);
+        }
+
+        function currentSlide(n) {
+            goToSlide(n);
+        }
+
+        function updateDots() {
+            carouselDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Modal functionality
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Form submission handlers
+        function handleRegisterSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const password = form.querySelector('input[type="password"]').value;
+            const confirmPassword = form.querySelectorAll('input[type="password"]')[1].value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            showSuccess('registerSuccess');
+            form.reset();
+            setTimeout(() => {
+                closeModal('registerModal');
+            }, 1500);
+        }
+
+        function handleNotifySubmit(e) {
+            e.preventDefault();
+            showSuccess('notifySuccess');
+            e.target.reset();
+            setTimeout(() => {
+                closeModal('notifyModal');
+            }, 1500);
+        }
+
+        function handleOnDemandSubmit(e) {
+            e.preventDefault();
+            alert('Order reserved! You will be able to confirm your order when we launch.');
+            e.target.reset();
+            closeModal('onDemandModal');
+        }
+
+        function handleSubscriptionSubmit(e) {
+            e.preventDefault();
+            alert('Subscription plan saved! Payment will be processed on launch day.');
+            e.target.reset();
+            closeModal('subscriptionModal');
+        }
+
+        function handleBulkSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for your inquiry! Our team will contact you within 24 hours.');
+            e.target.reset();
+            closeModal('contactModal');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showSuccess('contactSuccess');
+            e.target.reset();
+            setTimeout(() => {
+                document.getElementById('contactSuccess').classList.remove('show');
+            }, 3000);
+        }
+
+        function showSuccess(elementId) {
+            const element = document.getElementById(elementId);
+            element.classList.add('show');
+            setTimeout(() => {
+                element.classList.remove('show');
+            }, 3000);
+        }
+
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Countdown timer
+        function updateCountdown() {
+            const launchDate = new Date('2025-01-06').getTime();
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            if (distance > 0) {
+                document.getElementById('days').textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').textContent = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('minutes').textContent = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('seconds').textContent = Math.floor((distance % (1000 * 60)) / 1000);
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Initialize
+        updateDots();
+    </script>
+</body>
+</html>
